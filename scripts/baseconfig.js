@@ -16,16 +16,16 @@ const {
   getVuePlugin,
 } = require("./plugin/index.js");
 
-const { resolve } = require("./util/index");
+const { resolve,absolute } = require("./util/index");
 const path = require('path')
 
 const getCommonConfig = function () {
   return {
-    entry: path.resolve(__dirname,"../src/main.js"), // string | object | array  // 这里应用程序开始执行
+    entry: absolute("./src/main.js"), // string | object | array  // 这里应用程序开始执行
     resolve: {
       alias: {
         // 模块别名列表
-        "@": path.resolve(__dirname,"../src"),
+        "@": absolute("./src"),
       },
     },
   };
@@ -38,7 +38,7 @@ exports.getDevConfig = function () {
   const config = Object.assign(common, {
     mode,
     output: {
-      path: path.resolve(__dirname,"../dist"),
+      path: absolute("./dist"),
       filename: "[name].[chunkhash].js",
     },
     module: {
@@ -55,7 +55,7 @@ exports.getDevConfig = function () {
       getHotModuleReplacementPlugin(),
       getHtmlWebpackPlugin({
         filename: "index.html",
-        template: path.resolve(__dirname,"../public/index.html"),
+        template: absolute("./public/index.html"),
         minify: {
           caseSensitive: false, // 是否大小写敏感
           collapseWhitespace: true, // 是否去除空格
@@ -77,7 +77,7 @@ exports.getProConfig = function () {
   const config = Object.assign(common, {
     mode,
     output: {
-      path: path.resolve(__dirname,"../dist"),
+      path: absolute("./dist"),
       filename: "[name].[chunkhash].js",
     },
     module: {
@@ -92,7 +92,7 @@ exports.getProConfig = function () {
     plugins: [
       getHtmlWebpackPlugin({
         filename: "index.html",
-        template: path.resolve(__dirname,"../public/index.html"),
+        template: absolute("./public/index.html"),
         minify: {
           caseSensitive: false, // 是否大小写敏感
           collapseWhitespace: true, // 是否去除空格
