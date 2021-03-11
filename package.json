@@ -1,6 +1,6 @@
 {
   "name": "exclison-cli-vue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A cli with vue form exclison",
   "main": "index.js",
   "scripts": {
